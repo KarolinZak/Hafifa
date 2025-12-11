@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npx tsc && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "typeorm": "^0.3.28",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.5",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6"
+  }
+}
