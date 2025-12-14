@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
+import Login from "./components/Login/Login"
 
 const theme = createTheme({
   colorSchemes: {
@@ -14,6 +15,7 @@ const App : React.FC =() => {
     <>
     <ThemeProvider theme={theme}>
       <Navbar/>
+      <Login/>
     </ThemeProvider>
       
     </>

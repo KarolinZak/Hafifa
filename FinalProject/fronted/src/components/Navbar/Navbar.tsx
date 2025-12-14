@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, IconButton, colors } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 import { useColorScheme } from '@mui/material/styles';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          News
+          
         </Typography>
          <Button onClick={() =>  setMode(mode === "dark" ? "light" : "dark")}>
           {mode === "dark"? <DarkModeIcon sx={{color: '#ffffff'}}/> : <LightModeOutlinedIcon sx={{color: '#ffffff'}}/>}
