@@ -14,7 +14,6 @@ export class UsersController {
     @Res() res: Response,
   ) {
     try {
-      console.log(mail, password);
       const userExists = await this.usersService.checkUserExists(
         mail,
         password,
