@@ -1,13 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, Check } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, Check } from 'typeorm';
 
-@Entity({ schema: "School", name: "Users" })
+@Entity({ schema: 'School', name: 'Users' })
 @Check(`"mail" ~ '^[\\w.-]+@[\\w.-]+\\.\\w+$'`)
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  firstName: string;
 
   @Column()
   lastName: string;

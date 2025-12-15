@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
-import Login from "./components/Login/Form"
+import Login from "./components/Form/Form"
 import * as S from "./App.styles";
 
 const theme = createTheme({

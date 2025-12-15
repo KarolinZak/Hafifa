@@ -1,16 +1,19 @@
 import TextField from "@mui/material/TextField";
 import * as S from "./Form.styles";
-import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useForm, type SubmitErrorHandler, type SubmitHandler } from "react-hook-form";
 import type { FormValues } from "./Form.types";
+import { loginClient, signinClient } from "../api/auth.api";
 
 
 
-const Login: React.FC = () => {
+const Form: React.FC = () => {
   const [login, setLogin] = useState(true);
   const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+      if (login) loginClient(data) 
+      else signinClient(data)
+  } 
   const onError: SubmitErrorHandler<FormValues> = (errors) =>
     console.log(errors)
 
@@ -57,13 +60,12 @@ const Login: React.FC = () => {
           </>
         )}
         {login ?? <S.text sx={{ textAlign: "left" }}>Forgot password?</S.text>}
-        <Button
+        < S.formButton
           type="submit"
           variant="contained"
-          sx={{ width: "40vh", height: "40px", bgcolor: "#d55c5c" }}
-        >
+        > 
           {login ? "Login" : "Signin"}
-        </Button>
+        </S.formButton>
       </S.card>
       <S.text
         sx={{ textAlign: "center" }}
@@ -77,4 +79,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Form;

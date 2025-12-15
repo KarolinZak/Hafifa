@@ -1,10 +1,9 @@
-// users/users.controller.ts
 import { Controller, Post, Body, HttpStatus, Res } from '@nestjs/common';
 import { UsersService } from '../User/user.service';
 import { User } from './entities/User.entity';
-import { Response } from 'express';
+import type { Response } from 'express';
 
-@Controller('users')
+@Controller('auth')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -15,28 +14,45 @@ export class UsersController {
     @Res() res: Response,
   ) {
     try {
-      const userExists = await this.usersService.checkUserExists(mail, password);
+      console.log(mail, password);
+      const userExists = await this.usersService.checkUserExists(
+        mail,
+        password,
+      );
+      console.log(userExists);
       if (userExists) {
         return res.status(HttpStatus.OK).json({ message: 'Login successful' });
       } else {
-        return res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Invalid credentials' });
+        return res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ message: 'Invalid credentials' });
       }
     } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
+      const message =
+        error instanceof Error ? error.message : 'Internal server error';
+
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message });
     }
   }
 
-  @Post('signup')
+  @Post('signin')
   async signUp(@Body() newUser: User, @Res() res: Response) {
     try {
       const result = await this.usersService.addUser(newUser);
       if (result) {
-        return res.status(HttpStatus.CREATED).json({ message: 'User created successfully' });
+        return res
+          .status(HttpStatus.CREATED)
+          .json({ message: 'User created successfully' });
       } else {
-        return res.status(HttpStatus.I_AM_A_TEAPOT).json({ message: 'Failed to create user' });
+        return res
+          .status(HttpStatus.I_AM_A_TEAPOT)
+          .json({ message: 'Failed to create user' });
       }
     } catch (error) {
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error });
+      const message =
+        error instanceof Error ? error.message : 'Internal server error';
+
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message });
     }
   }
 }

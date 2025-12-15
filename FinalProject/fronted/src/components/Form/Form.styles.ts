@@ -1,7 +1,8 @@
 import { styled } from "@mui/material";
+import MuiButton from "@mui/material/Button";
 
 export const card = styled("form")(({ theme }) => ({
-  padding: "1rem",
+  padding: "2rem",
   background: theme.palette.background.default,
   width: "fix-content",
   height: "fix-content",
@@ -26,3 +27,8 @@ export const text = styled("p")(({ theme }) => ({
 }));
 
 
+export const formButton = styled(MuiButton)(() => ({
+  width: "40vh",
+  height: "40px", 
+  background: "#d55c5c"
+}));
