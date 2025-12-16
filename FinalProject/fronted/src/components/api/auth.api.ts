@@ -1,16 +1,17 @@
 import type { FormValues } from "../Form/Form.types";
 import type { authResponse } from "./auth.types";
 import { Base64 } from 'base64-string';
+import * as dotenv from 'dotenv';
 
-const API_URL = "http://localhost:3000";// TODO: move to env file
+dotenv.config();
 const enc = new Base64();
 
 export const loginClient = async (
   {mail, password} : FormValues
 ): Promise<authResponse> => {
   // TODO: use try and catch
-  const encPassword = enc.urlEncode(password);
-  const res = await fetch(`${API_URL}/auth/login`, {
+  const encPassword = enc.urlEncode(password!);
+  const res = await fetch(`${process.env.API_URL}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,8 +31,8 @@ export const loginClient = async (
 export const signinClient =  async (
   {mail, password, firstName, lastName} : FormValues
 ): Promise<authResponse> => {
-  const encPassword = enc.urlEncode(password);
-  const res = await fetch(`${API_URL}/auth/signin`, {
+  const encPassword = enc.urlEncode(password!);
+  const res = await fetch(`${process.env.API_URL}/auth/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

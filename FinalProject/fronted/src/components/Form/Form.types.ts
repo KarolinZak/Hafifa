@@ -19,6 +19,9 @@ export enum FieldColor {
 }
 
 export type FormProps = {
+  handleSubmitClick : (data: FormValues) => void;
+  header: string;
+  info: string; 
   formFields: FormFields[];
 };
 

@@ -3,15 +3,12 @@ import {
   type SubmitErrorHandler,
   type SubmitHandler,
 } from "react-hook-form";
-import { loginClient, signinClient } from "../api/auth.api";
-import TextField from "@mui/material/TextField";
-import type { FormFields, FormProps, FormValues } from "./Form.types";
+import type {FormProps, FormValues } from "./Form.types";
 import { FieldColor } from "./Form.types";
 import * as S from "./Form.styles";
 import { useState, type ChangeEvent } from "react";
 
-const Form: React.FC<FormProps> = ({ formFields }) => {
-  const [login, setLogin] = useState(true);
+const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick }) => {
   const [fieldColor, setFieldColor] = useState<FieldColor>(
     FieldColor.PrimaryColor
   );
@@ -22,8 +19,7 @@ const Form: React.FC<FormProps> = ({ formFields }) => {
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    if (login) loginClient(data);
-    else signinClient(data);
+    handleSubmitClick(data);
   };
 
   const handleTextFieldChange = (
@@ -43,10 +39,11 @@ const Form: React.FC<FormProps> = ({ formFields }) => {
   return (
     <>
       <S.card onSubmit={handleSubmit(onSubmit, onError)}>
-        <S.header>{login ? "Login" : "Signup"}</S.header>
-        <S.text>Log in to Hafifa school</S.text>
+        <S.header>{header}</S.header>
+        <S.text>{info}</S.text>
         {formFields.map((formField) => (
           <S.StyledTextField
+            required={formField.required} 
             label={formField.label}
             color={fieldColor}
             {...register(formField.name, {
@@ -56,19 +53,10 @@ const Form: React.FC<FormProps> = ({ formFields }) => {
               })}
           />
         ))}
-        {login ?? <S.text sx={{ textAlign: "left" }}>Forgot password?</S.text>}
         <S.formButton type="submit" variant="contained">
-          {login ? "Login" : "Signin"}
+          {header}
         </S.formButton>
       </S.card>
-      <S.text
-        sx={{ textAlign: "center" }}
-        onClick={() => setLogin(login ? false : true)}
-      >
-        {login
-          ? "Don't have an account? Sign in"
-          : "Already have account? Log in"}
-      </S.text>
     </>
   );
 };

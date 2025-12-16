@@ -11,10 +11,10 @@ export class UsersService {
   ) {}
 
   async checkUserExists(mail: string, password: string): Promise<boolean> {
-    const count = await this.userRepository.count({ // TODO: switch to find with !!user
+    const user = await this.userRepository.find({
       where: { mail, password },
     });
-    return count > 0;
+    return !!user;
   }
 
   async addUser(newUser: User): Promise<boolean> {

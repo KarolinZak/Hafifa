@@ -1,8 +1,10 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
 import Form from "./components/Form/Form"
-import { EmailRegex, type FormFields } from './components/Form/Form.types';
+import { loginFields, signupFields } from './App.types';
+import { loginClient, signinClient } from './components/api/auth.api';
 
 const theme = createTheme({
   colorSchemes: {
@@ -11,16 +13,21 @@ const theme = createTheme({
 });
 
 const App : React.FC =() => {
-  const loginFields: FormFields[] = [
-  { name: "mail", label: "Email", regex: EmailRegex, required: true },
-  { name: "password", label: "Password", regex: /.+/, required: true },
-  ];
+  
 
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Navbar/>
-      <Form formFields={loginFields}/> 
+      <BrowserRouter>
+        <Navbar/>
+        <main>
+        <Routes>
+          <Route path="/" element={<Form header={"Login"} info={"Login to Hafifa school"} formFields={loginFields} handleSubmitClick={loginClient}/>} />
+          <Route path="/signup" element={<Form header={"Signup"} info={"Signup to Hafifa school"} formFields={signupFields} handleSubmitClick={signinClient}/>} />
+        </Routes>
+      </main>
+      </BrowserRouter>
+       
     </ThemeProvider>
       
     </>
