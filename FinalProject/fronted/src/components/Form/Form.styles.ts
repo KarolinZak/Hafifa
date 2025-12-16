@@ -1,5 +1,6 @@
 import { styled } from "@mui/material";
 import MuiButton from "@mui/material/Button";
+import MuiTextField from "@mui/material/TextField";
 
 export const card = styled("form")(({ theme }) => ({
   padding: "2rem",
@@ -13,14 +14,14 @@ export const card = styled("form")(({ theme }) => ({
   alignItems: "center"
 }));
 
-export const header = styled("p")(({ theme }) => ({
+export const header = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: "4vh",
   margin: 0,
-}));
+})); // TODO: change to div
 
 
-export const text = styled("p")(({ theme }) => ({
+export const text = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: "1rem",
   margin: 0,
@@ -31,4 +32,8 @@ export const formButton = styled(MuiButton)(() => ({
   width: "40vh",
   height: "40px", 
   background: "#d55c5c"
+}));
+
+export const StyledTextField = styled(MuiTextField)(() => ({
+   width: "40vh" 
 }));

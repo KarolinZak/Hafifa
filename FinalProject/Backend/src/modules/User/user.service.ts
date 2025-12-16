@@ -11,7 +11,7 @@ export class UsersService {
   ) {}
 
   async checkUserExists(mail: string, password: string): Promise<boolean> {
-    const count = await this.userRepository.count({
+    const count = await this.userRepository.count({ // TODO: switch to find with !!user
       where: { mail, password },
     });
     return count > 0;

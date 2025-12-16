@@ -1,13 +1,14 @@
 import type { FormValues } from "../Form/Form.types";
-import type { authResponse } from "./api.types";
+import type { authResponse } from "./auth.types";
 import { Base64 } from 'base64-string';
 
-const API_URL = "http://localhost:3000";
+const API_URL = "http://localhost:3000";// TODO: move to env file
 const enc = new Base64();
 
 export const loginClient = async (
   {mail, password} : FormValues
 ): Promise<authResponse> => {
+  // TODO: use try and catch
   const encPassword = enc.urlEncode(password);
   const res = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
@@ -15,12 +16,12 @@ export const loginClient = async (
       "Content-Type": "application/json",
     },
     
-    body: JSON.stringify({ mail, encPassword }),
+    body: JSON.stringify({ mail, "password" : encPassword }),
   });
 
   if (!res.ok) {
     const error = await res.json().catch(() => null);
-    throw new Error(error?.message ?? "Login failed");
+    throw new Error(error?.message ?? "Login failed"); // TODO: catch in page handler
   }
 
   return res.json() as Promise<authResponse>;

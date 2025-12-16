@@ -11,7 +11,7 @@ import { User } from './modules/User/entities/User.entity';
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'postgres',
+      database: 'postgres', // TODO: save in env file
       entities: [User],
       synchronize: true,
     }),

@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './App.css'
 import Navbar from "./components/Navbar/Navbar"
-import Login from "./components/Form/Form"
-import * as S from "./App.styles";
+import Form from "./components/Form/Form"
+import { EmailRegex, type FormFields } from './components/Form/Form.types';
 
 const theme = createTheme({
   colorSchemes: {
@@ -11,13 +11,16 @@ const theme = createTheme({
 });
 
 const App : React.FC =() => {
+  const loginFields: FormFields[] = [
+  { name: "mail", label: "Email", regex: EmailRegex, required: true },
+  { name: "password", label: "Password", regex: /.+/, required: true },
+  ];
 
   return (
     <>
     <ThemeProvider theme={theme}>
-    
       <Navbar/>
-      <Login/>
+      <Form formFields={loginFields}/> 
     </ThemeProvider>
       
     </>
