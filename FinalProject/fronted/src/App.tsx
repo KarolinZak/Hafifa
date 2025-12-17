@@ -11,7 +11,7 @@ const theme = createTheme({
   colorSchemes: {
     dark: true,
   },
-});
+}); // TODO: customize theme
 
 const App : React.FC =() => {
   
@@ -22,10 +22,11 @@ const App : React.FC =() => {
       <BrowserRouter>
         <Navbar/>
         <main>
-        <Routes>
+        <Routes> 
+          {/* // TODO: map of routes */}
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<Signup/>} />
-          <Route path="/home" element={<></>} />
+          <Route path="/home" element={<></>} /> 
         </Routes>
       </main>
       </BrowserRouter>

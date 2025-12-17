@@ -3,7 +3,7 @@ import MuiButton from "@mui/material/Button";
 import { styled } from "@mui/material";
 
 export const card = styled("form")(({ theme }) => ({
-  padding: "2rem",
+  padding: "2rem", // TODO: change to vh vw
   background: theme.palette.background.default,
   width: "fix-content",
   height: "fix-content",
@@ -12,7 +12,7 @@ export const card = styled("form")(({ theme }) => ({
   flexDirection: "column",
   gap: "30px",
   alignItems: "center",
-  margin: "1rem",
+  margin: "1rem", // TODO: change to vh vw
   minWidth: "40vh",
   minHeight: "30vh",
 }));

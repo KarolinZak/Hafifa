@@ -43,7 +43,7 @@ export class UsersController {
           .json({ message: 'User created successfully' });
       } else {
         return res
-          .status(HttpStatus.I_AM_A_TEAPOT)
+          .status(HttpStatus.I_AM_A_TEAPOT) // TODO: FIREEEEEE
           .json({ message: 'Failed to create user' });
       }
     } catch (error) {

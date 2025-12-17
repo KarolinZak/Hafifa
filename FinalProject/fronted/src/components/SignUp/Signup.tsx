@@ -3,7 +3,8 @@ import { signupFields } from "../../App.types";
 import { StyledLink } from "./Signup.styles";
 import Form from "../Form/Form";
 
-const Signup: React.FC = () => {
+const Signup: React.FC = () => { // TODO: move to pages folder 
+  // TODO: wrap signupClient with try catch which will show error message on form, same for login
   return (
     <>
       <Form

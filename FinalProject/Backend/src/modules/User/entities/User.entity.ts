@@ -13,7 +13,6 @@ export class User {
   lastName: string;
 
   @Column({ unique: true })
-  @IsEmail()
   mail: string;
 
   @Column()

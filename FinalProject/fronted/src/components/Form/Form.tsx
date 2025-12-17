@@ -8,7 +8,7 @@ import * as S from "./Form.styles";
 
 
 const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick, path }) => {
-  let navigate = useNavigate(); 
+  let navigate = useNavigate(); // TODO: change to const
   const [fieldColor, setFieldColor] = useState<FieldColor>(
     FieldColor.PrimaryColor
   );

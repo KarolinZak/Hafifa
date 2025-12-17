@@ -11,3 +11,5 @@ export const loginFields: FormFields[] = [
   { name: "mail", label: "Email", regex: EmailRegex, required: true },
   { name: "password", label: "Password", regex: /.+/, required: true },
 ];
+
+// TODO: rename file to consts
