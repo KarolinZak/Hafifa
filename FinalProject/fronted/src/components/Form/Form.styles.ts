@@ -1,6 +1,6 @@
-import { styled } from "@mui/material";
-import MuiButton from "@mui/material/Button";
 import MuiTextField from "@mui/material/TextField";
+import MuiButton from "@mui/material/Button";
+import { styled } from "@mui/material";
 
 export const card = styled("form")(({ theme }) => ({
   padding: "2rem",
@@ -11,14 +11,17 @@ export const card = styled("form")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "30px",
-  alignItems: "center"
+  alignItems: "center",
+  margin: "1rem",
+  minWidth: "40vh",
+  minHeight: "30vh",
 }));
 
 export const header = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: "4vh",
   margin: 0,
-})); // TODO: change to div
+}));
 
 
 export const text = styled("div")(({ theme }) => ({

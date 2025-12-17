@@ -23,6 +23,7 @@ export type FormProps = {
   header: string;
   info: string; 
   formFields: FormFields[];
+  path: string;
 };
 
 export const EmailRegex: RegExp =

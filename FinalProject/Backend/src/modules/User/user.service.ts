@@ -11,7 +11,7 @@ export class UsersService {
   ) {}
 
   async checkUserExists(mail: string, password: string): Promise<boolean> {
-    const user = await this.userRepository.find({
+    const user = await this.userRepository.findOne({
       where: { mail, password },
     });
     return !!user;

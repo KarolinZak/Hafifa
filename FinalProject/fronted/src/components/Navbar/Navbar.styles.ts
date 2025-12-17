@@ -8,7 +8,8 @@ export const StyledAppBar = styled(MuiAppBar)(() => ({
   top: 0,
   left: 0,
   right: 0,
-  width: "100vw",
+  minWidth: "30vw",
+  minHeight: "4vh",
   backgroundColor: "#d55c5c",
 }));
 
@@ -19,4 +20,12 @@ export const StyledLightModeIcon = styled(MuiLightModeOutlinedIcon)(() => ({
 
 export const StyledDarkModeIcon = styled(MuiDarkModeIcon)(() => ({
   color: '#ffffff',
+}));
+
+
+export const Text= styled('div')(() => ({
+  flexGrow: '1',
+  fontSize: "1.25rem", 
+  fontWeight: 500,
+  lineHeight: 1.6,
 }));

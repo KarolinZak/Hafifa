@@ -1,50 +1,59 @@
 import type { FormValues } from "../Form/Form.types";
 import type { authResponse } from "./auth.types";
-import { Base64 } from 'base64-string';
-import * as dotenv from 'dotenv';
+import { Base64 } from "base64-string";
 
-dotenv.config();
+const apiUrl = import.meta.env.VITE_API_URL;
+
 const enc = new Base64();
 
-export const loginClient = async (
-  {mail, password} : FormValues
-): Promise<authResponse> => {
-  // TODO: use try and catch
+export const loginClient = async ({
+  mail,
+  password,
+}: FormValues): Promise<authResponse | undefined> => {
+  try {
+    const encPassword = enc.urlEncode(password!);
+    const res = await fetch(`${apiUrl}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({ mail, password: encPassword }),
+    });
+    return res.json() as Promise<authResponse>;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Fetch error:", error.message);
+    } else {
+      console.error("An unknown error occurred:", error);
+    }
+  }
+  
+};
+
+export const signupClient = async ({
+  mail,
+  password,
+  firstName,
+  lastName,
+}: FormValues): Promise<authResponse | undefined> => {
+  try {
   const encPassword = enc.urlEncode(password!);
-  const res = await fetch(`${process.env.API_URL}/auth/login`, {
+  const res = await fetch(`${apiUrl}/auth/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    
-    body: JSON.stringify({ mail, "password" : encPassword }),
+    body: JSON.stringify({ mail, password: encPassword, firstName, lastName }),
   });
-
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-    throw new Error(error?.message ?? "Login failed"); // TODO: catch in page handler
-  }
-
   return res.json() as Promise<authResponse>;
-}
 
-export const signinClient =  async (
-  {mail, password, firstName, lastName} : FormValues
-): Promise<authResponse> => {
-  const encPassword = enc.urlEncode(password!);
-  const res = await fetch(`${process.env.API_URL}/auth/signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ mail, 'password': encPassword, firstName, lastName }),
-  });
-
-  if (!res.ok) {
-    const error = await res.json().catch(() => null);
-    throw new Error(error?.message ?? "Signin failed");
+ } catch (error) {
+    if (error instanceof Error) {
+      console.error("Fetch error:", error.message);
+    } else {
+      console.error("An unknown error occurred:", error);
+    }
   }
-
-  return res.json() as Promise<authResponse>;
-}
-
+  
+};

@@ -18,7 +18,6 @@ export class UsersController {
         mail,
         password,
       );
-      console.log(userExists); // TODO: OH NOOOOOOOOOOO PLEASE PLEASE NO CONSOLE LOGS
       if (userExists) {
         return res.status(HttpStatus.OK).json({ message: 'Login successful' });
       } else {

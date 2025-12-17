@@ -1,25 +1,31 @@
-import {
-  useForm,
-  type SubmitErrorHandler,
-  type SubmitHandler,
-} from "react-hook-form";
+import {useForm, type SubmitErrorHandler, type SubmitHandler} from "react-hook-form";
 import type {FormProps, FormValues } from "./Form.types";
+import { useState, type ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { FieldColor } from "./Form.types";
 import * as S from "./Form.styles";
-import { useState, type ChangeEvent } from "react";
 
-const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick }) => {
+
+
+const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick, path }) => {
+  let navigate = useNavigate(); 
   const [fieldColor, setFieldColor] = useState<FieldColor>(
     FieldColor.PrimaryColor
   );
+  const [massage, setMassage] = useState<string>("");
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    handleSubmitClick(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      await handleSubmitClick(data);
+      navigate(path);
+    } catch (error){
+      setMassage(`Failed to ${header}: ${error}`);
+    }
   };
 
   const handleTextFieldChange = (
@@ -32,9 +38,6 @@ const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick
       setFieldColor(FieldColor.ErrorColor);
     }
   };
-
-  const onError: SubmitErrorHandler<FormValues> = (errors) =>
-    window.alert(errors); // TODO: use onError better and validate()
 
   return (
     <>
@@ -56,6 +59,7 @@ const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick
         <S.formButton type="submit" variant="contained">
           {header}
         </S.formButton>
+        <S.text>{massage}</S.text>
       </S.card>
     </>
   );
