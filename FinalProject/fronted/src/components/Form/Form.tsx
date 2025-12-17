@@ -41,7 +41,7 @@ const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick
 
   return (
     <>
-      <S.card onSubmit={handleSubmit(onSubmit, onError)}>
+      <S.card onSubmit={handleSubmit(onSubmit)}>
         <S.header>{header}</S.header>
         <S.text>{info}</S.text>
         {formFields.map((formField) => (

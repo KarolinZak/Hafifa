@@ -1,18 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, Check } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { IsEmail } from 'class-validator';
 
 @Entity({ schema: 'School', name: 'Users' })
-@Check(`"mail" ~ '^[\\w.-]+@[\\w.-]+\\.\\w+$'`) // TODO: check regex and add the check on the sepcific column
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column() // TODO: check input
+  @Column()
   firstName: string;
 
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
+  @IsEmail()
   mail: string;
 
   @Column()
