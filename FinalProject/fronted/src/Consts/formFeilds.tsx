@@ -1,5 +1,5 @@
 
-import { EmailRegex, type FormFields } from "../Types/Form.types";
+import { EmailRegex, type FormFields } from "../Types/formTypes";
 import type { AppRoute } from "../Types/appTypes";
 import Signup from '../Pages/Signup/Signup';
 import Login from '../Pages/Login/Login'

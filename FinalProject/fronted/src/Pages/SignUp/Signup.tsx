@@ -4,7 +4,6 @@ import { StyledLink } from "./Signup.styles";
 import Form from "../../components/Form/Form";
 
 const Signup: React.FC = () => { 
-  // TODO: wrap signupClient with try catch which will show error message on form, same for login
   return (
     <>
       <Form

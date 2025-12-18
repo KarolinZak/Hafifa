@@ -1,5 +1,5 @@
-import type { FormValues } from "../Types/Form.types";
-import type { authResponse } from "../Types/auth.types";
+import type { FormValues } from "../Types/formTypes";
+import type { authResponse } from "../Types/authTypes";
 import { Base64 } from "base64-string";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -9,9 +9,9 @@ const enc = new Base64();
 export const loginClient = async ({
   mail,
   password,
-}: FormValues): Promise<authResponse | undefined> => {
+}: FormValues): Promise<string> => {
   const encPassword = enc.urlEncode(password!);
-
+  console.log(mail)
   const res = await fetch(`${apiUrl}/auth/login`, {
     method: "POST",
     headers: {
@@ -22,14 +22,15 @@ export const loginClient = async ({
 
 
   if (!res.ok) {
+    
     const errorBody = await res.json().catch(() => null);
-
+    console.log(errorBody?.message);
     throw new Error(
       errorBody?.message || `Login failed (${res.status})`
     );
   }
-
-  return res.json();
+  const data: string = await res.json();
+  return data;
   
 };
 

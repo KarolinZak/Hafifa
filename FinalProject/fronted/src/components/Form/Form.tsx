@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import type { FormProps, FormValues } from "../../Types/Form.types";
+import type { FormProps, FormValues } from "../../Types/formTypes";
 import { useState, type ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { FieldColor } from "../../Types/Form.types";
+import { FieldColor } from "../../Types/formTypes";
 import * as S from "./Form.styles";
 import React from "react";
 import { toast } from "react-toastify";
