@@ -1,4 +1,8 @@
+
 import { EmailRegex, type FormFields } from "../Types/Form.types";
+import type { AppRoute } from "../Types/appTypes";
+import Signup from '../Pages/Signup/Signup';
+import Login from '../Pages/Login/Login'
 
 export const loginFields: FormFields[] = [
   { name: "mail", label: "Email", regex: EmailRegex, required: true },
@@ -13,4 +17,8 @@ export const loginFields: FormFields[] = [
 ];
 
 
-export const paths: Path[] = [{}];
+export const appRoutes: AppRoute[] = [
+  { path: "/login", element: <Login /> },
+  { path: "/signup", element: <Signup /> },
+  { path: "/home", element: <></> },
+];

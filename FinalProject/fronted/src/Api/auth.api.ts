@@ -10,24 +10,26 @@ export const loginClient = async ({
   mail,
   password,
 }: FormValues): Promise<authResponse | undefined> => {
-  try {
-    const encPassword = enc.urlEncode(password!);
-    const res = await fetch(`${apiUrl}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+  const encPassword = enc.urlEncode(password!);
 
-      body: JSON.stringify({ mail, password: encPassword }),
-    });
-    return res.json() as Promise<authResponse>;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Fetch error:", error.message);
-    } else {
-      console.error("An unknown error occurred:", error);
-    }
+  const res = await fetch(`${apiUrl}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ mail, password: encPassword }),
+  });
+
+
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => null);
+
+    throw new Error(
+      errorBody?.message || `Login failed (${res.status})`
+    );
   }
+
+  return res.json();
   
 };
 
@@ -36,9 +38,9 @@ export const signupClient = async ({
   password,
   firstName,
   lastName,
-}: FormValues): Promise<authResponse | undefined> => {
-  try {
+}: FormValues): Promise<authResponse> => {
   const encPassword = enc.urlEncode(password!);
+
   const res = await fetch(`${apiUrl}/auth/signin`, {
     method: "POST",
     headers: {
@@ -46,14 +48,12 @@ export const signupClient = async ({
     },
     body: JSON.stringify({ mail, password: encPassword, firstName, lastName }),
   });
-  return res.json() as Promise<authResponse>;
 
- } catch (error) {
-    if (error instanceof Error) {
-      console.error("Fetch error:", error.message);
-    } else {
-      console.error("An unknown error occurred:", error);
-    }
+  if (!res.ok) {
+    const errorBody = await res.json().catch(() => null);
+    throw new Error(errorBody?.message || `Signup failed (${res.status})`);
   }
-  
+
+  return res.json();
 };
+
