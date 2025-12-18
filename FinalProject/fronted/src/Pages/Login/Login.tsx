@@ -1,8 +1,8 @@
 
-import { loginFields } from "../../App.types";
-import { loginClient } from "../api/auth.api";
+import { loginFields } from "../../Consts/formFeilds";
+import { loginClient } from "../../Api/auth.api";
 import { StyledLink } from "./Login.styles";
-import Form from "../Form/Form";
+import Form from "../../components/Form/Form";
 
 
 

@@ -1,9 +1,9 @@
-import { signupClient } from "../api/auth.api";
-import { signupFields } from "../../App.types";
+import { signupClient } from "../../Api/auth.api";
+import { signupFields } from "../../Consts/formFeilds";
 import { StyledLink } from "./Signup.styles";
-import Form from "../Form/Form";
+import Form from "../../components/Form/Form";
 
-const Signup: React.FC = () => { // TODO: move to pages folder 
+const Signup: React.FC = () => { 
   // TODO: wrap signupClient with try catch which will show error message on form, same for login
   return (
     <>

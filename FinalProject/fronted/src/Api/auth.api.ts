@@ -1,5 +1,5 @@
-import type { FormValues } from "../Form/Form.types";
-import type { authResponse } from "./auth.types";
+import type { FormValues } from "../Types/Form.types";
+import type { authResponse } from "../Types/auth.types";
 import { Base64 } from "base64-string";
 
 const apiUrl = import.meta.env.VITE_API_URL;

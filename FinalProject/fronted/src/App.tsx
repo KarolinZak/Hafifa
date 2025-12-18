@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar"
-import Signup from './components/SignUp/Signup';
-import Login from './components/Login/Login'
+import Signup from './Pages/SignUp/Signup';
+import Login from './Pages/Login/Login'
 import './App.css'
 
 

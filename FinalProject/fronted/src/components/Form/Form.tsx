@@ -1,14 +1,14 @@
-import {useForm, type SubmitErrorHandler, type SubmitHandler} from "react-hook-form";
-import type {FormProps, FormValues } from "./Form.types";
+import {useForm, type SubmitHandler} from "react-hook-form";
+import type {FormProps, FormValues } from "../../Types/Form.types";
 import { useState, type ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { FieldColor } from "./Form.types";
+import { FieldColor } from "../../Types/Form.types";
 import * as S from "./Form.styles";
 
 
 
 const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick, path }) => {
-  let navigate = useNavigate(); // TODO: change to const
+  const navigate = useNavigate(); 
   const [fieldColor, setFieldColor] = useState<FieldColor>(
     FieldColor.PrimaryColor
   );

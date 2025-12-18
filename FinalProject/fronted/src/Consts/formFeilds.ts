@@ -1,4 +1,4 @@
-import { EmailRegex, type FormFields } from "./components/Form/Form.types";
+import { EmailRegex, type FormFields } from "../Types/Form.types";
 
 export const loginFields: FormFields[] = [
   { name: "mail", label: "Email", regex: EmailRegex, required: true },
@@ -12,4 +12,5 @@ export const loginFields: FormFields[] = [
   { name: "password", label: "Password", regex: /.+/, required: true },
 ];
 
-// TODO: rename file to consts
+
+export const paths: Path[] = [{}];

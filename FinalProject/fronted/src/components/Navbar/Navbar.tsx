@@ -3,7 +3,7 @@ import { Menu as MenuIcon } from "@mui/icons-material";
 import { useColorScheme } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
 import * as S from "./Navbar.styles";
-import { themes } from "./Navbar.types";
+import { themes } from "../../Types/Navbar.types";
 
 
 const Navbar: React.FC = () => {
