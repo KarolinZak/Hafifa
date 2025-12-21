@@ -30,6 +30,7 @@ export const card = styled("form")(({ theme }) => ({
 
 export const header = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
+  fontWeight: 600,
   fontSize: "4vh",
   margin: 0,
 }));

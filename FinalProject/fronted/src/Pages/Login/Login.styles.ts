@@ -4,6 +4,7 @@ import themeColors from "../../themes";
 
 
 export const StyledLink = styled(Link)(({ theme }) => ({
+   fontSize: "20px",
   textDecoration: 'none',
    color: themeColors.default.colors.coralRed,
    '&:hover': {
