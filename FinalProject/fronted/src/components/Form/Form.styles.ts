@@ -1,7 +1,7 @@
 import MuiTextField from "@mui/material/TextField";
 import MuiButton from "@mui/material/Button";
 import { alpha, styled } from "@mui/material";
-import theme from "../../themes";
+import colorTheme from "../../themes";
 
 export const card = styled("form")(({ theme }) => ({
   padding: "30px",
@@ -43,10 +43,15 @@ export const text = styled("div")(({ theme }) => ({
 }));
 
 
-export const formButton = styled(MuiButton)(() => ({
+export const formButton = styled(MuiButton)(({ theme }) => ({
   width: "40vh",
   height: "40px", 
-  background: theme.default.colors.coralRed,
+  background: theme.palette.mode === "dark"
+    ? colorTheme.default.colors.darkPurple
+    : colorTheme.default.colors.lightPink,
+  color:  theme.palette.mode === "dark"
+    ? colorTheme.default.colors.white
+    : colorTheme.default.colors.black
 }));
 
 export const StyledTextField = styled(MuiTextField)(() => ({

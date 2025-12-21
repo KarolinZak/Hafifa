@@ -6,6 +6,8 @@ declare module "@mui/material/styles" {
     default: {
       colors: {
         coralRed: string;
+        lightPink: string;
+        darkPurple?: string;
         black: string;
         white: string;
       };
@@ -16,6 +18,8 @@ declare module "@mui/material/styles" {
     default?: {
       colors?: {
         coralRed?: string;
+        lightPink?: string;
+        darkPurple?: string;
         black?: string;
         white?: string;
       };
@@ -30,6 +34,8 @@ const theme = createTheme({
   default: {
     colors: {
       coralRed: "#d55c5c",
+      lightPink: "#eda4bd",
+      darkPurple: "#6c1452",
       black: "#000000",
       white: "#ffffff",
     },
@@ -38,8 +44,7 @@ const theme = createTheme({
     light: {
       palette: {
         mode: "light",
-        primary: { main: "#5755f7" },
-        secondary: { main: "#2196f3" },
+        primary: { main: "#eda4bd" },
         background: {
           default: "#f5f6f9",
           paper: "#ffffff",
@@ -53,8 +58,7 @@ const theme = createTheme({
     dark: {
       palette: {
         mode: "dark",
-        primary: { main: "#9b9aff" },
-        secondary: { main: "#2196f3" },
+        primary: { main: "#551066" },
         background: {
           default: "#121212",
           paper: "#1e1e1e",

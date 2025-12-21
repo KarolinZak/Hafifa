@@ -1,13 +1,14 @@
 import { styled } from "@mui/material";
 import { Link } from "react-router";
-import themeColors from "../../themes";
+import colorTheme from '../../themes';
 
-export const StyledLink = styled(Link)(() => ({
+export const StyledLink = styled(Link)(({ theme }) => ({
   fontSize: "20px",
   textDecoration: "none",
-  color: themeColors.default.colors.coralRed,
+  color: theme.palette.mode === "dark"
+    ? colorTheme.default.colors.lightPink
+    : colorTheme.default.colors.darkPurple,
   "&:hover": {
-    color: themeColors.default.colors.coralRed,
     fontWeight: "500",
   },
 }));

@@ -6,7 +6,8 @@ import { FieldColor } from "../../Types/formTypes";
 import * as S from "./Form.styles";
 import React from "react";
 import { toast } from "react-toastify";
-import {NeatVisualizer,  neatConfig } from "./NeatVisualizer";
+import {NeatVisualizer,  darkNeatConfig,  lightNeatConfig } from "./NeatVisualizer";
+import { useTheme } from "@mui/material/styles";
 
 const Form: React.FC<FormProps> = ({
   header,
@@ -43,8 +44,17 @@ const Form: React.FC<FormProps> = ({
       setFieldColor(FieldColor.ErrorColor);
     }
   };
+  const theme = useTheme();
+
+  const neatConfig =
+    theme.palette.mode === "dark"
+      ? darkNeatConfig
+      : lightNeatConfig;
+
+      console.log("Current theme mode:", theme.palette.mode);
 
   return (
+    
     <>
     <NeatVisualizer config={neatConfig} />
       <S.card onSubmit={handleSubmit(onSubmit)}>

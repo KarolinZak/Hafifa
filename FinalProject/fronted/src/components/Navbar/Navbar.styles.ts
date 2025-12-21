@@ -2,25 +2,28 @@ import MuiLightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import MuiDarkModeIcon from '@mui/icons-material/DarkMode';
 import MuiAppBar from "@mui/material/AppBar";
 import { styled } from "@mui/material";
-import theme from '../../themes';
+import colorTheme from '../../themes';
+import { useTheme } from '@mui/material/styles';
 
 
-export const StyledAppBar = styled(MuiAppBar)(() => ({
+export const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
   top: 0,
   left: 0,
   right: 0,
   minWidth: "30vw",
   minHeight: "4vh",
-  backgroundColor: theme.default.colors.coralRed,
+  backgroundColor: theme.palette.mode === "dark"
+    ? colorTheme.default.colors.darkPurple
+    : colorTheme.default.colors.lightPink,
 }));
 
 
 export const StyledLightModeIcon = styled(MuiLightModeOutlinedIcon)(() => ({
-  color: theme.default.colors.white,
+  color: colorTheme.default.colors.white,
 }));
 
 export const StyledDarkModeIcon = styled(MuiDarkModeIcon)(() => ({
-  color: theme.default.colors.white,
+  color: colorTheme.default.colors.white,
 }));
 
 
