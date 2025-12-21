@@ -9,9 +9,8 @@ const enc = new Base64();
 export const loginClient = async ({
   mail,
   password,
-}: FormValues): Promise<string> => {
+}: FormValues): Promise<void> => {
   const encPassword = enc.urlEncode(password!);
-  console.log(mail)
   const res = await fetch(`${apiUrl}/auth/login`, {
     method: "POST",
     headers: {
@@ -20,17 +19,14 @@ export const loginClient = async ({
     body: JSON.stringify({ mail, password: encPassword }),
   });
 
-
   if (!res.ok) {
-    
     const errorBody = await res.json().catch(() => null);
-    console.log(errorBody?.message);
     throw new Error(
       errorBody?.message || `Login failed (${res.status})`
     );
   }
-  const data: string = await res.json();
-  return data;
+  const data: authResponse = await res.json();
+  localStorage.setItem('token', data.token);
   
 };
 
@@ -39,7 +35,7 @@ export const signupClient = async ({
   password,
   firstName,
   lastName,
-}: FormValues): Promise<authResponse> => {
+}: FormValues): Promise<void> => {
   const encPassword = enc.urlEncode(password!);
 
   const res = await fetch(`${apiUrl}/auth/signin`, {
@@ -54,7 +50,5 @@ export const signupClient = async ({
     const errorBody = await res.json().catch(() => null);
     throw new Error(errorBody?.message || `Signup failed (${res.status})`);
   }
-
-  return res.json();
 };
 

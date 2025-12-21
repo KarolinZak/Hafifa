@@ -16,7 +16,6 @@ const Navbar: React.FC = () => {
   return (
     <S.StyledAppBar position="fixed">
       <Toolbar>
-        {" "}
         {location.pathname !== "/login" && location.pathname !== "/signup" && ( 
           <IconButton edge="start" color="inherit">
             <MenuIcon />

@@ -2,7 +2,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar"
 import './App.css'
-import { appRoutes } from './Consts/formFeilds';
+import { appRoutes } from './Consts/routes';
 import { ToastContainer, Zoom } from 'react-toastify';
 
 

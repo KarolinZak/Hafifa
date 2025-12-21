@@ -1,12 +1,12 @@
 import MuiTextField from "@mui/material/TextField";
 import MuiButton from "@mui/material/Button";
-import { styled } from "@mui/material";
+import { alpha, styled } from "@mui/material";
+import theme from "../../themes";
 
 export const card = styled("form")(({ theme }) => ({
   padding: "30px",
-  background: theme.palette.background.default,
-  width: "fix-content",
-  height: "fix-content",
+  width: "fit-content",
+  height: "fit-content",
   borderRadius: "1vw",
   display: "flex",
   flexDirection: "column",
@@ -15,7 +15,18 @@ export const card = styled("form")(({ theme }) => ({
   margin: "10px",
   minWidth: "40vh",
   minHeight: "30vh",
+  position: "relative",
+  zIndex: 1,
+
+
+  background: alpha(theme.palette.background.paper, 0.3), // semi-transparent
+  backdropFilter: "blur(10px)", // blur background behind
+  WebkitBackdropFilter: "blur(10px)", // Safari support
+  border: `1px solid ${alpha(theme.palette.background.paper, 0.3)}`, // optional border for nicer look
+
 }));
+
+
 
 export const header = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -34,7 +45,7 @@ export const text = styled("div")(({ theme }) => ({
 export const formButton = styled(MuiButton)(() => ({
   width: "40vh",
   height: "40px", 
-  background: "#d55c5c"
+  background: theme.default.colors.coralRed,
 }));
 
 export const StyledTextField = styled(MuiTextField)(() => ({

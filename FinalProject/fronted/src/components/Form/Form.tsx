@@ -6,6 +6,7 @@ import { FieldColor } from "../../Types/formTypes";
 import * as S from "./Form.styles";
 import React from "react";
 import { toast } from "react-toastify";
+import {NeatVisualizer,  neatConfig } from "./NeatVisualizer";
 
 const Form: React.FC<FormProps> = ({
   header,
@@ -18,7 +19,6 @@ const Form: React.FC<FormProps> = ({
   const [fieldColor, setFieldColor] = useState<FieldColor>(
     FieldColor.PrimaryColor
   );
-  const [massage, setMassage] = useState<string>("");
 
   const { register, handleSubmit } = useForm<FormValues>();
 
@@ -27,7 +27,6 @@ const Form: React.FC<FormProps> = ({
       await handleSubmitClick(data);
       navigate(path);
     } catch (error) {
-      console.log("Error during form submission:", error);
       if (error instanceof Error) {
         toast.error(`An error occurred: ${error.message}`);
       }
@@ -47,6 +46,7 @@ const Form: React.FC<FormProps> = ({
 
   return (
     <>
+    <NeatVisualizer config={neatConfig} />
       <S.card onSubmit={handleSubmit(onSubmit)}>
         <S.header>{header}</S.header>
         <S.text>{info}</S.text>
@@ -65,8 +65,8 @@ const Form: React.FC<FormProps> = ({
         <S.formButton type="submit" variant="contained">
           {header}
         </S.formButton>
-        <S.text>{massage}</S.text>
       </S.card>
+      
     </>
   );
 };

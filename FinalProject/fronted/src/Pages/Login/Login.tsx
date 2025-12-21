@@ -1,6 +1,6 @@
 import { loginFields } from "../../Consts/formFeilds";
 import { loginClient } from "../../Api/auth.api";
-import { StyledLink } from "./Login.styles";
+import * as S from "./Login.styles";
 import Form from "../../components/Form/Form";
 
 const Login: React.FC = () => {
@@ -13,9 +13,9 @@ const Login: React.FC = () => {
         formFields={loginFields}
         path={"/home"}
       ></Form>
-      <div>
-        Don't have an account?<StyledLink to="/signup"> Sign up</StyledLink>
-      </div>
+      <S.StyledText>
+        Don't have an account?<S.StyledLink to="/signup"> Sign up</S.StyledLink>
+      </S.StyledText>
     </>
   );
 };
