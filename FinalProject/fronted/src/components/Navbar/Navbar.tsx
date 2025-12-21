@@ -4,7 +4,6 @@ import { useColorScheme } from "@mui/material/styles";
 import { useLocation } from "react-router-dom";
 import * as S from "./Navbar.styles";
 import { themes } from "../../Types/navbarTypes";
-import { useTheme } from "@mui/material/styles";
 
 
 const Navbar: React.FC = () => {
@@ -13,10 +12,10 @@ const Navbar: React.FC = () => {
   if (!mode) {
     return null;
   }
-  const theme = useTheme();
+  
   return (
     <S.StyledAppBar position="fixed">
-      <Toolbar>
+      <Toolbar >
         {location.pathname !== "/login" && location.pathname !== "/signup" && ( 
           <IconButton edge="start" color="inherit">
             <MenuIcon />

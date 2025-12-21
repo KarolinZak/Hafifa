@@ -3,7 +3,6 @@ import MuiDarkModeIcon from '@mui/icons-material/DarkMode';
 import MuiAppBar from "@mui/material/AppBar";
 import { styled } from "@mui/material";
 import colorTheme from '../../themes';
-import { useTheme } from '@mui/material/styles';
 
 
 export const StyledAppBar = styled(MuiAppBar)(({ theme }) => ({
