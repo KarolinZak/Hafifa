@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
-export type AppRoute = {
+export interface AppRoute {
   path : string;
   element: ReactNode,
+  protected: boolean,
 };

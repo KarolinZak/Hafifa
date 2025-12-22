@@ -1,5 +1,5 @@
 import { loginFields } from "../../Consts/formFeilds";
-import { loginClient } from "../../Api/auth.api";
+import { loginClient } from "../../Service/auth";
 import * as S from "./Login.styles";
 import Form from "../../components/Form/Form";
 

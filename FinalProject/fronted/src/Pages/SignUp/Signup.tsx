@@ -1,4 +1,4 @@
-import { signupClient } from "../../Api/auth.api";
+import { signupClient } from "../../Service/auth";
 import { signupFields } from "../../Consts/formFeilds";
 import Form from "../../components/Form/Form";
 import * as S from "./Signup.styles";

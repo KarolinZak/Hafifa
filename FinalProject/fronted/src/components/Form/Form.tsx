@@ -51,8 +51,6 @@ const Form: React.FC<FormProps> = ({
       ? darkNeatConfig
       : lightNeatConfig;
 
-      console.log("Current theme mode:", theme.palette.mode);
-
   return (
     
     <>

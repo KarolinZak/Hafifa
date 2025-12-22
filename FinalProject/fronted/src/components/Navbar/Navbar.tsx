@@ -1,22 +1,29 @@
 import { Toolbar, Button, IconButton } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { useColorScheme } from "@mui/material/styles";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./Navbar.styles";
 import { themes } from "../../Types/navbarTypes";
+import { appRoutes } from "../../Consts/routes";
 
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate(); 
   const location = useLocation();
   const { mode, setMode } = useColorScheme();
   if (!mode) {
     return null;
   }
-  
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
+
   return (
     <S.StyledAppBar position="fixed">
       <Toolbar >
-        {location.pathname !== "/login" && location.pathname !== "/signup" && ( 
+        {appRoutes.some(route => location.pathname == route.path && (route.protected) ) && ( 
           <IconButton edge="start" color="inherit">
             <MenuIcon />
           </IconButton>
@@ -35,9 +42,14 @@ const Navbar: React.FC = () => {
               <S.StyledLightModeIcon />
             )}
           </Button>
+          {appRoutes.some(route => location.pathname == route.path && route.protected) && ( 
+          <Button onClick={() => logout()}>
+            <S.StyledLogoutIcon />
+          </Button>
+        )}
       </Toolbar>
     </S.StyledAppBar>
   );
 };
 
-export default Navbar;
+export default Navbar;  

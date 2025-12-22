@@ -57,7 +57,7 @@ export const NeatVisualizer: React.FC<NeatVisualizerProps> = ({ config }) => {
     if (!canvasRef.current) return;
 
     neatRef.current = new NeatGradient({
-      ref: canvasRef.current, // ✅ correct type
+      ref: canvasRef.current,
       ...config,
     });
 

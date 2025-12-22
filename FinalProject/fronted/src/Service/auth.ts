@@ -20,10 +20,7 @@ export const loginClient = async ({
   });
 
   if (!res.ok) {
-    const errorBody = await res.json().catch(() => null);
-    throw new Error(
-      errorBody?.message || `Login failed (${res.status})`
-    );
+    throw new Error(`Login failed (${res.status})`);
   }
   const data: authResponse = await res.json();
   localStorage.setItem('token', data.token);
@@ -36,19 +33,17 @@ export const signupClient = async ({
   firstName,
   lastName,
 }: FormValues): Promise<void> => {
-  const encPassword = enc.urlEncode(password!);
+    const encPassword = enc.urlEncode(password!);
 
-  const res = await fetch(`${apiUrl}/auth/signin`, {
+    const res = await fetch(`${apiUrl}/auth/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ mail, password: encPassword, firstName, lastName }),
   });
-
   if (!res.ok) {
-    const errorBody = await res.json().catch(() => null);
-    throw new Error(errorBody?.message || `Signup failed (${res.status})`);
-  }
+    throw new Error(`Signup failed (${res.status})`);
+  
 };
-
+};

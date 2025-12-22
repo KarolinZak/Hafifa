@@ -8,25 +8,19 @@ import {
   Logger,
 } from '@nestjs/common';
 import { UsersService } from './user.service';
-import { User } from './entities/User.entity';
 import type { Response } from 'express';
+import { LoginUserDto, UserDto } from './DTO/userDTO';
 
 @Controller('auth')
 export class UsersController {
   private readonly logger = new Logger(UsersService.name);
-  
+
   constructor(private readonly usersService: UsersService) {}
   @Post('login')
-  async logIn(
-    @Body('mail') mail: string,
-    @Body('password') password: string,
-    @Res() res: Response,
-  ) {
+  async logIn(@Body() loginUserDto: LoginUserDto, @Res() res: Response) {
+    const { mail } = loginUserDto;
     try {
-      const userExists = await this.usersService.checkUserExists(
-        mail,
-        password,
-      );
+      const userExists = await this.usersService.checkUserExists(loginUserDto);
       this.logger.log(`User authenticated successfully: ${mail}`);
       return res.status(HttpStatus.OK).json({ token: userExists.token });
     } catch (error) {
@@ -46,7 +40,7 @@ export class UsersController {
   }
 
   @Post('signin')
-  async signUp(@Body() newUser: User, @Res() res: Response) {
+  async signUp(@Body() newUser: UserDto, @Res() res: Response) {
     try {
       const result = await this.usersService.addUser(newUser);
       if (result) {
@@ -55,7 +49,7 @@ export class UsersController {
           .json({ message: 'User created successfully' });
       } else {
         return res
-          .status(HttpStatus.I_AM_A_TEAPOT) // TODO: FIREEEEEE
+          .status(HttpStatus.I_AM_A_TEAPOT)
           .json({ message: 'Failed to create user' });
       }
     } catch (error) {

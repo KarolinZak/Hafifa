@@ -1,11 +1,11 @@
-export type FormValues = {
+export interface FormValues {
   mail?: string;
   password?: string;
   firstName?: string;
   lastName?: string;
 };
 
-export type FormFields = {
+export interface FormFields {
   name: keyof FormValues;
   required : boolean;
   label: string;
@@ -18,7 +18,7 @@ export enum FieldColor {
   ErrorColor = 'error',
 }
 
-export type FormProps = {
+export interface FormProps {
   handleSubmitClick : (data: FormValues) => void;
   header: string;
   info: string; 
@@ -26,5 +26,3 @@ export type FormProps = {
   path: string;
 };
 
-export const EmailRegex: RegExp =
-  /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/;

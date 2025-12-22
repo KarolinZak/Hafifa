@@ -19,10 +19,9 @@ export const card = styled("form")(({ theme }) => ({
   zIndex: 1,
 
 
-  background: alpha(theme.palette.background.paper, 0.3), // semi-transparent
-  backdropFilter: "blur(10px)", // blur background behind
-  WebkitBackdropFilter: "blur(10px)", // Safari support
-  border: `1px solid ${alpha(theme.palette.background.paper, 0.3)}`, // optional border for nicer look
+  background: alpha(theme.palette.background.paper, 0.3), 
+  WebkitBackdropFilter: "blur(10px)",
+  border: `1px solid ${alpha(theme.palette.background.paper, 0.3)}`, 
 
 }));
 
