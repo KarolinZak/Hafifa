@@ -4,8 +4,16 @@ import Signup from '../Pages/Signup/Signup';
 import Login from '../Pages/Login/Login'
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
+export const routePaths = {
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  HOME: "/home",
+};
+
 export const appRoutes: AppRoute[] = [
-  { path: "/login", element: <Login /> , protected : false},
-  { path: "/signup", element: <Signup /> , protected : false},
-  { path: "/home", element:  <ProtectedRoute><></></ProtectedRoute>, protected : true },
+  { path: routePaths.LOGIN, element: <Login /> , protected : false},
+  { path: routePaths.SIGNUP, element: <Signup /> , protected : false},
+  { path: routePaths.HOME, element:  <ProtectedRoute><></></ProtectedRoute>, protected : true },
 ];
+
+

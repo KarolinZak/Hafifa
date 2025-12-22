@@ -1,5 +1,6 @@
 import type { JSX } from 'react';
 import { Navigate } from 'react-router-dom';
+import { routePaths } from '../../Consts/routes';
 
 type ProtectedRouteProps = {
   children: JSX.Element;
@@ -9,7 +10,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const isLoggedIn = Boolean(localStorage.getItem('token'));
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to={routePaths.LOGIN} replace />;
   }
 
   return children;

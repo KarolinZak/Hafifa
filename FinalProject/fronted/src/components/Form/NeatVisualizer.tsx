@@ -22,7 +22,6 @@ export const lightNeatConfig: NeatConfig = {
   waveAmplitude: 2,
   shadows: 4,
   highlights: 7,
-  backgroundColor: "#00A2FF",
   resolution: 0.5,
   flowEnabled: true,
 };
@@ -43,7 +42,6 @@ export const darkNeatConfig: NeatConfig = {
   waveAmplitude: 2,
   shadows: 4,
   highlights: 7,
-  backgroundColor: "#00A2FF",
   resolution: 0.5,
   flowEnabled: true,
 };
