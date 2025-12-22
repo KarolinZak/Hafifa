@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { Student } from './Student.entity';
+import { Student } from '../../Student/entities/Student.entity';
 
 @Entity({ schema: 'school', name: 'class' })
 export class Class {

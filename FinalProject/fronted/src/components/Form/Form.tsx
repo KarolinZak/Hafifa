@@ -21,7 +21,9 @@ const Form: React.FC<FormProps> = ({
     FieldColor.PrimaryColor
   );
 
-  const { register, handleSubmit } = useForm<FormValues>();
+  const { register, handleSubmit , formState: { errors }, watch } = useForm<FormValues>({mode:'all'});
+  
+  const values = watch();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
@@ -34,16 +36,6 @@ const Form: React.FC<FormProps> = ({
     }
   };
 
-  const handleTextFieldChange = (
-    element: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    regex: RegExp
-  ) => {
-    if (regex.test(element.target.value)) {
-      setFieldColor(FieldColor.SuccessColor);
-    } else {
-      setFieldColor(FieldColor.ErrorColor);
-    }
-  };
   const theme = useTheme();
 
   const neatConfig =
@@ -62,11 +54,9 @@ const Form: React.FC<FormProps> = ({
           <S.StyledTextField
             required={formField.required}
             label={formField.label}
-            color={fieldColor}
+            color={values[formField.name] && (errors?.[formField.name] ? FieldColor.ErrorColor : FieldColor.SuccessColor)}
             {...register(formField.name, {
-              onChange: (e) => {
-                handleTextFieldChange(e, formField.regex);
-              },
+              validate: (value) => formField.regex.test(value || "") ? undefined:"תווים לא חוקים",
             })}
           />
         ))}

@@ -5,8 +5,8 @@ import {
   OneToOne,
   ManyToMany,
 } from 'typeorm';
-import { User } from './User.entity';
-import { Class } from './class.entity';
+import { User } from '../../User/entities/User.entity';
+import { Class } from '../../Classes/entities/class.entity';
 
 @Entity({ schema: 'school', name: 'student' })
 export class Student {
