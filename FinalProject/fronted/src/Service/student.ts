@@ -2,8 +2,8 @@ import type { SchoolClass } from "../Types/classTypes";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const getAllStudentClasses = async (studentId: number): Promise<SchoolClass[]>=> {
-  const res = await fetch(`${apiUrl}/student/classes?`, {
+export const getAllStudentClasses = async (): Promise<SchoolClass[]>=> {
+  const res = await fetch(`${apiUrl}/class/all`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
