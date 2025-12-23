@@ -35,7 +35,7 @@ const theme = createTheme({
     colors: {
       coralRed: "#d55c5c",
       lightPink: "#eda4bd",
-      darkPurple: "#6c1452",
+      darkPurple: "#972b78",
       black: "#000000",
       white: "#ffffff",
     },

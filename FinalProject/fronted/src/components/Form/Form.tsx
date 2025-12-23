@@ -1,13 +1,17 @@
-import { useForm, type SubmitHandler } from "react-hook-form";
 import type { FormProps, FormValues } from "../../Types/formTypes";
-import { useState, type ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { FieldColor } from "../../Types/formTypes";
-import * as S from "./Form.styles";
-import React from "react";
-import { toast } from "react-toastify";
-import {NeatVisualizer,  darkNeatConfig,  lightNeatConfig } from "./NeatVisualizer";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as S from "./Form.styles";
+import { useState } from "react";
+import {
+  NeatVisualizer,
+  darkNeatConfig,
+  lightNeatConfig,
+} from "../NestVisualizer/NeatVisualizer";
+import React from "react";
 
 const Form: React.FC<FormProps> = ({
   header,
@@ -17,12 +21,13 @@ const Form: React.FC<FormProps> = ({
   path,
 }) => {
   const navigate = useNavigate();
-  const [fieldColor, setFieldColor] = useState<FieldColor>(
-    FieldColor.PrimaryColor
-  );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<FormValues>({ mode: "all" });
 
-  const { register, handleSubmit , formState: { errors }, watch } = useForm<FormValues>({mode:'all'});
-  
   const values = watch();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -39,14 +44,11 @@ const Form: React.FC<FormProps> = ({
   const theme = useTheme();
 
   const neatConfig =
-    theme.palette.mode === "dark"
-      ? darkNeatConfig
-      : lightNeatConfig;
+    theme.palette.mode === "dark" ? darkNeatConfig : lightNeatConfig;
 
   return (
-    
     <>
-    <NeatVisualizer config={neatConfig} />
+      <NeatVisualizer config={neatConfig} />
       <S.card onSubmit={handleSubmit(onSubmit)}>
         <S.header>{header}</S.header>
         <S.text>{info}</S.text>
@@ -54,9 +56,17 @@ const Form: React.FC<FormProps> = ({
           <S.StyledTextField
             required={formField.required}
             label={formField.label}
-            color={values[formField.name] && (errors?.[formField.name] ? FieldColor.ErrorColor : FieldColor.SuccessColor)}
+            color={
+              values[formField.name] &&
+              (errors?.[formField.name]
+                ? FieldColor.ErrorColor
+                : FieldColor.SuccessColor)
+            }
             {...register(formField.name, {
-              validate: (value) => formField.regex.test(value || "") ? undefined:"תווים לא חוקים",
+              validate: (value) =>
+                formField.regex.test(value || "")
+                  ? undefined
+                  : "תווים לא חוקים",
             })}
           />
         ))}
@@ -64,7 +74,6 @@ const Form: React.FC<FormProps> = ({
           {header}
         </S.formButton>
       </S.card>
-      
     </>
   );
 };

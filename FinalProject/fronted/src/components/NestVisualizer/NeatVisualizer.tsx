@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { NeatGradient } from "@firecms/neat";
 import type { NeatConfig } from "@firecms/neat";
+import { NeatGradient } from "@firecms/neat";
 
 interface NeatVisualizerProps {
   config: NeatConfig;
