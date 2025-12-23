@@ -5,7 +5,6 @@ import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as S from "./Form.styles";
-import { useState } from "react";
 import {
   NeatVisualizer,
   darkNeatConfig,
