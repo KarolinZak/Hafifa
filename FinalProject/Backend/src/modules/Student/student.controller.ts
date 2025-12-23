@@ -6,6 +6,7 @@ import {
   UnauthorizedException,
   Logger,
   Get,
+  Query,
 } from '@nestjs/common';
 import type { Response } from 'express';
 import { StudentService } from './student.service';
@@ -16,7 +17,10 @@ export class StudentController {
 
   constructor(private readonly studentService: StudentService) {}
   @Get('classes')
-  async allClasses(@Body('studentId') studentId: number, @Res() res: Response) {
+  async allClasses(
+    @Query('studentId') studentId: number,
+    @Res() res: Response,
+  ) {
     console.log('Received studentId:', studentId);
     try {
       const { classes } = await this.studentService.getAllClasses(studentId);

@@ -4,7 +4,7 @@ import { useColorScheme } from "@mui/material/styles";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./Navbar.styles";
 import { themes } from "../../Types/navbarTypes";
-import { appRoutes } from "../../Consts/routes";
+import { appRoutes } from "../../Consts/routesConsts";
 
 
 const Navbar: React.FC = () => {

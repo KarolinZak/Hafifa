@@ -28,8 +28,16 @@ export const StyledCard = styled(Card)(() => ({
   minWidth: "10vh",
   marginTop: "5vh",
   boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.27)",
+  borderRadius: "10px",
 }));
 
 export const StyledCardMedia = styled(CardMedia)(() => ({
   minHeight: "17vh",
+}));
+
+export const CardsContainer = styled("div")(() => ({
+  display: "flex",
+  flexWrap: "wrap",       
+  gap: "24px",             
+  justifyContent: "flex-start",
 }));

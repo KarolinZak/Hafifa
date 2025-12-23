@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 import { Navigate } from 'react-router-dom';
-import { routePaths } from '../../Consts/routes';
+import { routePaths } from '../../Consts/routesConsts';
 
 type ProtectedRouteProps = {
   children: JSX.Element;
