@@ -6,42 +6,43 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 
+import ListItemText from "@mui/material/ListItemText";
+import { menuRoutes } from "../../Consts/routesConsts";
+import { useNavigate } from "react-router-dom";
+import * as S from "./MenuDrawer.styles";
 
 const MenuDrawer: React.FC<{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   open: boolean;
 }> = ({ open, setOpen }) => {
+  const navigate = useNavigate();
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={() => setOpen(false)}>
+      <S.UserContainer>
+        <S.Avatar src="/avatar.png" alt="Pedro Malo" />
+
+        <S.TextContainer>
+          <S.NameText>Pedro Malo</S.NameText>
+          <S.EmailText>PedroMalo@gmail.com</S.EmailText>
+        </S.TextContainer>
+      </S.UserContainer>
+      <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
+        {menuRoutes.map((route) => (
+          <ListItem key={route.routeName} disablePadding>
+            <ListItemButton onClick={() => navigate(route.routeName)}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <route.routeIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <S.ListItemTextStyled
+                primary={route.routeName.replace("/", "").toUpperCase()}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </Box>
   );
 

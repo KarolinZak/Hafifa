@@ -56,10 +56,11 @@ const Form: React.FC<FormProps> = ({
             required={formField.required}
             label={formField.label}
             color={
-              values[formField.name] &&
-              (errors?.[formField.name]
-                ? FieldColor.ErrorColor
-                : FieldColor.SuccessColor)
+              values[formField.name]
+                ? errors?.[formField.name]
+                  ? FieldColor.ErrorColor
+                  : FieldColor.SuccessColor
+                : undefined
             }
             {...register(formField.name, {
               validate: (value) =>

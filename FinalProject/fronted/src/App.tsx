@@ -11,7 +11,7 @@ const theme = createTheme({
   colorSchemes: {
     dark: true,
   },
-}); // TODO: customize theme
+});
 
 const App : React.FC =() => {
   

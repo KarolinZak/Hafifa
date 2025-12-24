@@ -14,7 +14,7 @@ const Classes: React.FC = () => {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const data = await getAllStudentClasses(1);
+        const data = await getAllStudentClasses();
         setClasses(data); 
         console.log(data);
       } catch (err) {

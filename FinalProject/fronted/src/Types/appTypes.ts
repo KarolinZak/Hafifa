@@ -5,3 +5,8 @@ export interface AppRoute {
   element: ReactNode,
   protected: boolean,
 };
+
+export interface MenuRoutes {
+  routeName: string;    
+  routeIcon: React.ElementType;
+}
