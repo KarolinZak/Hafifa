@@ -1,10 +1,10 @@
-import { signupClient } from "../../Api/auth.api";
-import { signupFields } from "../../Consts/formFeilds";
-import { StyledLink } from "./Signup.styles";
+import { signupClient } from "../../Service/auth";
+import { signupFields } from "../../Consts/formFeildsConsts";
 import Form from "../../components/Form/Form";
+import * as S from "./Signup.styles";
+import { routePaths } from "../../Consts/routesConsts";
 
 const Signup: React.FC = () => { 
-  // TODO: wrap signupClient with try catch which will show error message on form, same for login
   return (
     <>
       <Form
@@ -12,11 +12,11 @@ const Signup: React.FC = () => {
         header={"Signup"}
         info={"Signup to Hafifa school"}
         formFields={signupFields}
-        path={"/login"}
+        path={routePaths.LOGIN}
       ></Form>
-      <div>
-        Already have an account?<StyledLink to="/login"> Log in</StyledLink>
-      </div>
+      <S.StyledText>
+        Already have an account?<S.StyledLink to={routePaths.LOGIN}> Log in</S.StyledLink>
+      </S.StyledText>
     </>
   );
 };

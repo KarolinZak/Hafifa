@@ -1,12 +1,12 @@
 import MuiTextField from "@mui/material/TextField";
+import { alpha, styled } from "@mui/material";
 import MuiButton from "@mui/material/Button";
-import { styled } from "@mui/material";
+import colorTheme from "../../themes";
 
 export const card = styled("form")(({ theme }) => ({
   padding: "30px",
-  background: theme.palette.background.default,
-  width: "fix-content",
-  height: "fix-content",
+  width: "fit-content",
+  height: "fit-content",
   borderRadius: "1vw",
   display: "flex",
   flexDirection: "column",
@@ -15,10 +15,21 @@ export const card = styled("form")(({ theme }) => ({
   margin: "10px",
   minWidth: "40vh",
   minHeight: "30vh",
+  position: "relative",
+  zIndex: 1,
+
+
+  background: alpha(theme.palette.background.paper, 0.3), 
+  WebkitBackdropFilter: "blur(10px)",
+  border: `1px solid ${alpha(theme.palette.background.paper, 0.3)}`, 
+
 }));
+
+
 
 export const header = styled("div")(({ theme }) => ({
   color: theme.palette.text.primary,
+  fontWeight: 600,
   fontSize: "4vh",
   margin: 0,
 }));
@@ -31,10 +42,13 @@ export const text = styled("div")(({ theme }) => ({
 }));
 
 
-export const formButton = styled(MuiButton)(() => ({
+export const formButton = styled(MuiButton)(({ theme }) => ({
   width: "40vh",
   height: "40px", 
-  background: "#d55c5c"
+  background: theme.palette.mode === "dark"
+    ? colorTheme.default.colors.darkPurple
+    : colorTheme.default.colors.lightPink,
+  color:  theme.palette.text.primary
 }));
 
 export const StyledTextField = styled(MuiTextField)(() => ({

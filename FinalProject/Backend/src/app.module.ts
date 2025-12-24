@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/User/user.module';
-import { User } from './modules/User/entities/User.entity';
+import { ClassesModule } from './modules/Classes/classes.module';
+import { StudentModule } from './modules/Student/student.module';
 
 @Module({
   imports: [
@@ -18,12 +19,15 @@ import { User } from './modules/User/entities/User.entity';
         port: configService.get<number>('DB_PORT', 5432),
         username: configService.get<string>('DB_USERNAME', 'postgres'),
         password: configService.get<string>('DB_PASSWORD', 'postgres'),
-        database: configService.get<string>('DB_NAME', 'postgres'), // TODO: check about envVar
-        entities: [User],
-        synchronize: true,
+        database: configService.get<string>('DB_NAME', 'postgres'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: false,
+        logging: false,
       }),
     }),
     UserModule,
+    ClassesModule,
+    StudentModule,
   ],
 })
 export class AppModule {}

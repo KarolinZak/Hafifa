@@ -1,65 +1,77 @@
-import {useForm, type SubmitHandler} from "react-hook-form";
-import type {FormProps, FormValues } from "../../Types/Form.types";
-import { useState, type ChangeEvent } from "react";
+import type { FormProps, FormValues } from "../../Types/formTypes";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { FieldColor } from "../../Types/formTypes";
+import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { FieldColor } from "../../Types/Form.types";
+import { toast } from "react-toastify";
 import * as S from "./Form.styles";
+import {
+  NeatVisualizer,
+  darkNeatConfig,
+  lightNeatConfig,
+} from "../NestVisualizer/NeatVisualizer";
+import React from "react";
 
-
-
-const Form: React.FC<FormProps> = ({ header, info, formFields, handleSubmitClick, path }) => {
-  const navigate = useNavigate(); 
-  const [fieldColor, setFieldColor] = useState<FieldColor>(
-    FieldColor.PrimaryColor
-  );
-  const [massage, setMassage] = useState<string>("");
-
+const Form: React.FC<FormProps> = ({
+  header,
+  info,
+  formFields,
+  handleSubmitClick,
+  path,
+}) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-  } = useForm<FormValues>();
+    formState: { errors },
+    watch,
+  } = useForm<FormValues>({ mode: "all" });
+
+  const values = watch();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       await handleSubmitClick(data);
       navigate(path);
-    } catch (error){
-      setMassage(`Failed to ${header}: ${error}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(`An error occurred: ${error.message}`);
+      }
     }
   };
 
-  const handleTextFieldChange = (
-    element: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    regex: RegExp
-  ) => {
-    if (regex.test(element.target.value)) {
-      setFieldColor(FieldColor.SuccessColor);
-    } else {
-      setFieldColor(FieldColor.ErrorColor);
-    }
-  };
+  const theme = useTheme();
+
+  const neatConfig =
+    theme.palette.mode === "dark" ? darkNeatConfig : lightNeatConfig;
 
   return (
     <>
+      <NeatVisualizer config={neatConfig} />
       <S.card onSubmit={handleSubmit(onSubmit)}>
         <S.header>{header}</S.header>
         <S.text>{info}</S.text>
         {formFields.map((formField) => (
           <S.StyledTextField
-            required={formField.required} 
+            required={formField.required}
             label={formField.label}
-            color={fieldColor}
+            color={
+              values[formField.name] &&
+              (errors?.[formField.name]
+                ? FieldColor.ErrorColor
+                : FieldColor.SuccessColor)
+            }
             {...register(formField.name, {
-                onChange: (e) => {
-                  handleTextFieldChange(e, formField.regex)
-                },
-              })}
+              validate: (value) =>
+                formField.regex.test(value || "")
+                  ? undefined
+                  : "תווים לא חוקים",
+            })}
           />
         ))}
         <S.formButton type="submit" variant="contained">
           {header}
         </S.formButton>
-        <S.text>{massage}</S.text>
       </S.card>
     </>
   );

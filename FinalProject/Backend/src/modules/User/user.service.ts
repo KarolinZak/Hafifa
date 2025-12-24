@@ -1,23 +1,35 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { User } from './entities/User.entity';
+import { JwtService } from '@nestjs/jwt';
+import { Repository } from 'typeorm';
+import { LoginUserDto, UserDto } from './DTO/userDTO';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
-  async checkUserExists(mail: string, password: string): Promise<boolean> {
+  async checkUserExists(
+    loginUserDto: LoginUserDto,
+  ): Promise<{ token: string }> {
+    const { mail, password } = loginUserDto;
     const user = await this.userRepository.findOne({
       where: { mail, password },
     });
-    return !!user;
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+    const payload = { sub: user.id, mail: user.mail };
+    return {
+      token: await this.jwtService.signAsync(payload),
+    };
   }
 
-  async addUser(newUser: User): Promise<boolean> {
+  async addUser(newUser: UserDto): Promise<boolean> {
     const savedUser = await this.userRepository.save(newUser);
     return !!savedUser.id;
   }
