@@ -1,3 +1,4 @@
+import CardActions from "@mui/material/CardActions";
 import MuiButton from "@mui/material/Button";
 import { CardMedia } from "@mui/material";
 import { styled } from "@mui/material";
@@ -22,6 +23,12 @@ export const StyledButton = styled(MuiButton)(({ theme }) => ({
       ? colorTheme.default.colors.darkPurple
       : colorTheme.default.colors.lightPink,
     fontWeight: "bold",
+}));
+
+export const StyledCardActions = styled(CardActions)(() => ({
+  display: "flex",
+  justifyContent: "space-around",
+  alignItems: "center",
 }));
 
 export const StyledCard = styled(Card)(() => ({

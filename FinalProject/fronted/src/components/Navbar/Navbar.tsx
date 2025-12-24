@@ -5,9 +5,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import * as S from "./Navbar.styles";
 import { themes } from "../../Types/navbarTypes";
 import { appRoutes } from "../../Consts/routesConsts";
+import {useState} from "react";
+import MenuDrawer from "../MenuDrawer/menuDrawer";
 
 
 const Navbar: React.FC = () => {
+  const [drawerToggle, setDrawerToggle] = useState(false);
   const navigate = useNavigate(); 
   const location = useLocation();
   const { mode, setMode } = useColorScheme();
@@ -15,17 +18,21 @@ const Navbar: React.FC = () => {
     return null;
   }
 
+  
+
   const logout = () => {
     localStorage.removeItem('token');
     navigate('/login');
   }
 
   return (
+
     <S.StyledAppBar position="fixed">
       <Toolbar >
         {appRoutes.some(route => location.pathname == route.path && (route.protected) ) && ( 
           <IconButton edge="start" color="inherit">
             <MenuIcon />
+            <MenuDrawer open={drawerToggle} setOpen={() => setDrawerToggle(true)} />
           </IconButton>
         )}
         <S.Text>

@@ -1,15 +1,15 @@
-import CardActions from "@mui/material/CardActions";
+import type { ClassCardProps } from "../../Types/classCardTypes";
+import type { SchoolClass } from "../../Types/classTypes";
+import { subjectImage } from "../../Consts/imageConsts";
+import BasicModal from "../studentModal/StudentModal";
 import CardContent from "@mui/material/CardContent";
 import DeleteIcon from "@mui/icons-material/Delete";
 import * as S from "./ClassCard.style";
-import React from "react";
-import type { SchoolClass } from "../../Types/classTypes";
-import { subjectImage } from "../../Consts/imageConsts";
-import BasicModal from "../StudentModal/StudentModal";
+import {useState} from "react";
 
-const ClassCard: React.FC<{ classes: SchoolClass[] }> = ({ classes }) => {
-  const [open, setOpen] = React.useState(false);
-  const [selectedClass, setSelectedClass] = React.useState<SchoolClass | null>(
+const ClassCard: React.FC<ClassCardProps> = ({ classes }) => {
+  const [open, setOpen] = useState(false);
+  const [selectedClass, setSelectedClass] = useState<SchoolClass | null>(
     null
   );
   return (
@@ -33,7 +33,7 @@ const ClassCard: React.FC<{ classes: SchoolClass[] }> = ({ classes }) => {
                 students.
               </S.Text>
             </CardContent>
-            <CardActions>
+            <S.StyledCardActions>
               <S.StyledButton
                 size="small"
                 onClick={() => {
@@ -47,7 +47,7 @@ const ClassCard: React.FC<{ classes: SchoolClass[] }> = ({ classes }) => {
               <S.StyledButton size="small">
                 <DeleteIcon />
               </S.StyledButton>
-            </CardActions>
+            </S.StyledCardActions>
           </S.StyledCard>
         ))}
       </S.CardsContainer>
