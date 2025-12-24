@@ -48,9 +48,7 @@ export const formButton = styled(MuiButton)(({ theme }) => ({
   background: theme.palette.mode === "dark"
     ? colorTheme.default.colors.darkPurple
     : colorTheme.default.colors.lightPink,
-  color:  theme.palette.mode === "dark"
-    ? colorTheme.default.colors.white
-    : colorTheme.default.colors.black
+  color:  theme.palette.text.primary
 }));
 
 export const StyledTextField = styled(MuiTextField)(() => ({

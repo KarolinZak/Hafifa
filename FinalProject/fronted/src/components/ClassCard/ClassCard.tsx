@@ -5,8 +5,13 @@ import * as S from "./ClassCard.style";
 import React from "react";
 import type { SchoolClass } from "../../Types/classTypes";
 import { subjectImage } from "../../Consts/imageConsts";
+import BasicModal from "../StudentModal/StudentModal";
 
 const ClassCard: React.FC<{ classes: SchoolClass[] }> = ({ classes }) => {
+  const [open, setOpen] = React.useState(false);
+  const [selectedClass, setSelectedClass] = React.useState<SchoolClass | null>(
+    null
+  );
   return (
     <>
       <S.CardsContainer>
@@ -29,7 +34,16 @@ const ClassCard: React.FC<{ classes: SchoolClass[] }> = ({ classes }) => {
               </S.Text>
             </CardContent>
             <CardActions>
-              <S.StyledButton size="small">student list</S.StyledButton>
+              <S.StyledButton
+                size="small"
+                onClick={() => {
+                  setOpen(true);
+                  setSelectedClass(schoolClass);
+                }}
+              >
+                student list
+              </S.StyledButton>
+              <BasicModal setOpen={setOpen} open={open} selectedClass={selectedClass} />
               <S.StyledButton size="small">
                 <DeleteIcon />
               </S.StyledButton>
