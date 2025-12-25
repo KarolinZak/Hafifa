@@ -1,22 +1,26 @@
-import React, { useEffect, useState } from "react";
+import {
+  darkNeatConfig,
+  lightNeatConfig,
+  NeatVisualizer,
+} from "../../components/NestVisualizer/NeatVisualizer";
 import ClassCard from "../../components/ClassCard/ClassCard";
-import { useTheme } from "@mui/material/styles";
-import { darkNeatConfig, lightNeatConfig, NeatVisualizer } from "../../components/NestVisualizer/NeatVisualizer";
 import { getAllStudentClasses } from "../../Service/student";
 import type { SchoolClass } from "../../Types/classTypes";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "@mui/material/styles";
 
 const Classes: React.FC = () => {
   const theme = useTheme();
   const [classes, setClasses] = useState<SchoolClass[]>([]);
 
-  const neatConfig = theme.palette.mode === "dark" ? darkNeatConfig : lightNeatConfig;
+  const neatConfig =
+    theme.palette.mode === "dark" ? darkNeatConfig : lightNeatConfig;
 
   useEffect(() => {
     const fetchClasses = async () => {
       try {
         const data = await getAllStudentClasses();
-        setClasses(data); 
-        console.log(data);
+        setClasses(data);
       } catch (err) {
         console.error("Failed to fetch classes:", err);
       }

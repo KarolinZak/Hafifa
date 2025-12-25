@@ -1,12 +1,12 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { Toolbar, Button, IconButton } from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 import { useColorScheme } from "@mui/material/styles";
-import { useLocation, useNavigate } from "react-router-dom";
-import * as S from "./Navbar.styles";
-import { themes } from "../../Types/navbarTypes";
 import { appRoutes } from "../../Consts/routesConsts";
-import { useState } from "react";
 import MenuDrawer from "../MenuDrawer/MenuDrawer";
+import { themes } from "../../Types/navbarTypes";
+import * as S from "./Navbar.styles";
+import { useState } from "react";
 
 const Navbar: React.FC = () => {
   const [drawerToggle, setDrawerToggle] = useState(false);

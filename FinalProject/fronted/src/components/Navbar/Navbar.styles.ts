@@ -29,7 +29,6 @@ export const StyledLogoutIcon = styled(MuiLogoutIcon)(() => ({
   color: colorTheme.default.colors.white,
 }));
 
-
 export const Text= styled('div')(() => ({
   flexGrow: '1',
   fontSize: "1.25rem", 

@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
-import { Link } from "react-router";
 import colorTheme from '../../themes';
+import { Link } from "react-router";
 
 
 export const StyledLink = styled(Link)(({ theme }) => ({

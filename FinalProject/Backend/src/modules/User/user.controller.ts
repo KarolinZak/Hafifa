@@ -22,7 +22,9 @@ export class UsersController {
     try {
       const userExists = await this.usersService.checkUserExists(loginUserDto);
       this.logger.log(`User authenticated successfully: ${mail}`);
-      return res.status(HttpStatus.OK).json({ token: userExists.token });
+      return res
+        .status(HttpStatus.OK)
+        .json({ token: userExists.token, user: userExists.user });
     } catch (error) {
       if (error instanceof UnauthorizedException) {
         this.logger.warn(`Failed login attempt for mail: ${mail}`);

@@ -1,10 +1,11 @@
 import type { ClassesImagePath } from "../Types/classTypes";
-import scienceImg from "../Assets/Science.png";
+import mathematicsImg from "../Assets/Mathematics.png";
 import biologistImg from "../Assets/Biology.png";
 import englishImg from "../Assets/English.png";
-import mathematicsImg from "../Assets/Mathematics.png";
-import yogaImg from "../Assets/Yoga.png";
+import scienceImg from "../Assets/Science.png";
 import sportImg from "../Assets/Sport.png";
+import yogaImg from "../Assets/Yoga.png";
+
 
 export const subjectImage: ClassesImagePath[] = [
   { name: "Biology", src: biologistImg },

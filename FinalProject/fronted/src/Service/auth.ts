@@ -1,15 +1,15 @@
+import { type authResponse } from "../Types/authTypes";
 import type { FormValues } from "../Types/formTypes";
-import type { authResponse } from "../Types/authTypes";
 import { Base64 } from "base64-string";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const enc = new Base64();
 
-export const loginClient = async ({
-  mail,
-  password,
-}: FormValues): Promise<void> => {
+export const loginClient = async (
+  { mail, password }: FormValues,
+  setCurrentUser: (user: any) => void
+): Promise<void> => {
   const encPassword = enc.urlEncode(password!);
   const res = await fetch(`${apiUrl}/auth/login`, {
     method: "POST",
@@ -23,8 +23,8 @@ export const loginClient = async ({
     throw new Error(`Login failed (${res.status})`);
   }
   const data: authResponse = await res.json();
-  localStorage.setItem('token', data.token);
-  
+  setCurrentUser(data.user);
+  localStorage.setItem("token", data.token);
 };
 
 export const signupClient = async ({
@@ -33,9 +33,9 @@ export const signupClient = async ({
   firstName,
   lastName,
 }: FormValues): Promise<void> => {
-    const encPassword = enc.urlEncode(password!);
+  const encPassword = enc.urlEncode(password!);
 
-    const res = await fetch(`${apiUrl}/auth/signin`, {
+  const res = await fetch(`${apiUrl}/auth/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,6 +44,5 @@ export const signupClient = async ({
   });
   if (!res.ok) {
     throw new Error(`Signup failed (${res.status})`);
-  
-};
+  }
 };

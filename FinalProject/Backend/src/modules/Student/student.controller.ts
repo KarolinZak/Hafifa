@@ -21,7 +21,6 @@ export class StudentController {
     @Query('studentId') studentId: number,
     @Res() res: Response,
   ) {
-    console.log('Received studentId:', studentId);
     try {
       const { classes } = await this.studentService.getAllClasses(studentId);
       this.logger.log(`Got all classes for student ID: ${studentId}`);

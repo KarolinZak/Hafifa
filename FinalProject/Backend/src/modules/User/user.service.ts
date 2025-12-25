@@ -15,7 +15,7 @@ export class UsersService {
 
   async checkUserExists(
     loginUserDto: LoginUserDto,
-  ): Promise<{ token: string }> {
+  ): Promise<{ token: string; user: User }> {
     const { mail, password } = loginUserDto;
     const user = await this.userRepository.findOne({
       where: { mail, password },
@@ -26,6 +26,7 @@ export class UsersService {
     const payload = { sub: user.id, mail: user.mail };
     return {
       token: await this.jwtService.signAsync(payload),
+      user: user,
     };
   }
 

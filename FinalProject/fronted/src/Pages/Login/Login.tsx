@@ -1,14 +1,19 @@
 import { loginFields } from "../../Consts/formFeildsConsts";
-import { loginClient } from "../../Service/auth";
-import * as S from "./Login.styles";
-import Form from "../../components/Form/Form";
 import { routePaths } from "../../Consts/routesConsts";
+import { AuthContext } from "../../Types/authTypes";
+import { loginClient } from "../../Service/auth";
+import Form from "../../components/Form/Form";
+import * as S from "./Login.styles";
+import { useContext } from "react";
 
 const Login: React.FC = () => {
+  const auth = useContext(AuthContext);
+  if (!auth) return null;
+  const { setCurrentUser } = auth;
   return (
     <>
       <Form
-        handleSubmitClick={loginClient}
+        handleSubmitClick={(formValues) => loginClient(formValues, setCurrentUser)}
         header={"Login"}
         info={"Login to Hafifa school"}
         formFields={loginFields}

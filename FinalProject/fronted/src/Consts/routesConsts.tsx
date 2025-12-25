@@ -1,11 +1,11 @@
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 import type { AppRoute, MenuRoutes } from "../Types/appTypes";
+import PeopleIcon from "@mui/icons-material/People";
+import CreateIcon from "@mui/icons-material/Create";
+import ClassIcon from "@mui/icons-material/Class";
+import Classes from "../Pages/ClassPage/Class";
 import Signup from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login";
-import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
-import Classes from "../Pages/ClassPage/Class";
-import PeopleIcon from "@mui/icons-material/People";
-import ClassIcon from "@mui/icons-material/Class";
-import CreateIcon from "@mui/icons-material/Create";
 
 export const routePaths = {
   LOGIN: "/login",
@@ -47,7 +47,7 @@ export const appRoutes: AppRoute[] = [
   },
 ];
 
-export const menuRoutes : MenuRoutes[] = [
+export const menuRoutes: MenuRoutes[] = [
   {
     routeName: routePaths.HOME,
     routeIcon: ClassIcon,

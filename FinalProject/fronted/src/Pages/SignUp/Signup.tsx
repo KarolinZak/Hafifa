@@ -1,8 +1,10 @@
-import { signupClient } from "../../Service/auth";
 import { signupFields } from "../../Consts/formFeildsConsts";
+import { routePaths } from "../../Consts/routesConsts";
+import { signupClient } from "../../Service/auth";
 import Form from "../../components/Form/Form";
 import * as S from "./Signup.styles";
-import { routePaths } from "../../Consts/routesConsts";
+
+
 
 const Signup: React.FC = () => { 
   return (

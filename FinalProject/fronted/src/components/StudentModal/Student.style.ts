@@ -1,10 +1,9 @@
-import { Box, styled } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DeleteIcon from "@mui/icons-material/Delete";
 import MuiButton from "@mui/material/Button";
+import { Box, styled } from "@mui/material";
 import colorTheme from "../../themes";
 
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
-import DeleteIcon from "@mui/icons-material/Delete";
 
 export const Text = styled("div")(() => ({
   fontSize: "1rem",

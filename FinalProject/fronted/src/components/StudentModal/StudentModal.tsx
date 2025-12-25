@@ -1,8 +1,8 @@
-import * as React from "react";
-import * as S from "./Student.style";
-import Modal from "@mui/material/Modal";
-import type { Student } from "../../Types/studentTypes";
 import type { SchoolClass } from "../../Types/classTypes";
+import type { Student } from "../../Types/studentTypes";
+import Modal from "@mui/material/Modal";
+import * as S from "./Student.style";
+import * as React from "react";
 
 const BasicModal: React.FC<{
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

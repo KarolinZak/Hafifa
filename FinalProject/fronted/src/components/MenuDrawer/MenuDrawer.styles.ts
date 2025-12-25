@@ -1,6 +1,5 @@
-import { styled } from "@mui/material";
-
 import ListItemText from "@mui/material/ListItemText";
+import { styled } from "@mui/material";
 
 export const UserContainer = styled("div")(() => ({
   display: "flex",
@@ -32,6 +31,7 @@ export const ListItemTextStyled = styled(ListItemText)(() => ({
 }));
 
 export const EmailText = styled("div")(() => ({
+  marginTop: "4px",
   fontSize: "0.875rem",
   color: "#666",
 }));
